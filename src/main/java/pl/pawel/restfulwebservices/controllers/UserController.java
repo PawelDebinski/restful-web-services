@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pawel.restfulwebservices.dao.UserDao;
 import pl.pawel.restfulwebservices.entities.User;
-import pl.pawel.restfulwebservices.exceptions.UserAlreadyExistException;
 import pl.pawel.restfulwebservices.exceptions.UserNotFoundException;
 
+import javax.validation.Valid;
 import java.net.URI;
-import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -39,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
 
         URI location = ServletUriComponentsBuilder

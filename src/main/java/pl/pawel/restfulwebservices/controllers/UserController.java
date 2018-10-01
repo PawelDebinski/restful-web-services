@@ -10,6 +10,7 @@ import pl.pawel.restfulwebservices.exceptions.UserAlreadyExistException;
 import pl.pawel.restfulwebservices.exceptions.UserNotFoundException;
 
 import java.net.URI;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -31,6 +32,12 @@ public class UserController {
         return user;
     }
 
+    @DeleteMapping(path = "/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        User user = service.deleteById(id);
+        if(user == null) throw new UserNotFoundException("id-" + id);
+    }
+
     @PostMapping("/users")
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         User savedUser = service.save(user);
@@ -42,4 +49,6 @@ public class UserController {
 
         return ResponseEntity.created(location).build();
     }
+
+
 }

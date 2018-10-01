@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.pawel.restfulwebservices.dao.UserDao;
 import pl.pawel.restfulwebservices.entities.User;
+import pl.pawel.restfulwebservices.exceptions.UserAlreadyExistException;
 import pl.pawel.restfulwebservices.exceptions.UserNotFoundException;
 
 import java.net.URI;
